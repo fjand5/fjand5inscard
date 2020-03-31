@@ -81,7 +81,25 @@
   function drawCenterImg(img, ctx, w, h) {
       var centerImg = new Image(10, 20);
       centerImg.src = img.src
-      ctx.drawImage(centerImg, (w - WIDTH_CENTER) / 2, (h - HEIGHT_CENTER) / 2, WIDTH_CENTER, HEIGHT_CENTER);
+      ctx.save();
+        roundedImage(ctx,(w - WIDTH_CENTER) / 2,(h - HEIGHT_CENTER) / 2,WIDTH_CENTER,HEIGHT_CENTER,15);
+        ctx.clip();
+        ctx.drawImage(centerImg,(w - WIDTH_CENTER) / 2,(h - HEIGHT_CENTER) / 2,WIDTH_CENTER,HEIGHT_CENTER);
+        ctx.restore();
+      // ctx.drawImage(centerImg, (w - WIDTH_CENTER) / 2, (h - HEIGHT_CENTER) / 2, WIDTH_CENTER, HEIGHT_CENTER);
       ctx.drawImage(farmImg, (w - farmImg.width) / 2, (h - farmImg.height) / 2, farmImg.width, farmImg.height);
 
   }
+  function roundedImage(ctx,x,y,width,height,radius){
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
