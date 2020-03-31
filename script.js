@@ -82,7 +82,7 @@
       var centerImg = new Image(10, 20);
       centerImg.src = img.src
       ctx.save();
-        roundedImage(ctx,(w - WIDTH_CENTER) / 2,(h - HEIGHT_CENTER) / 2,WIDTH_CENTER,HEIGHT_CENTER,15);
+        roundedImage(ctx,(w - WIDTH_CENTER) / 2,(h - HEIGHT_CENTER) / 2,WIDTH_CENTER,HEIGHT_CENTER,30);
         ctx.clip();
         ctx.drawImage(centerImg,(w - WIDTH_CENTER) / 2,(h - HEIGHT_CENTER) / 2,WIDTH_CENTER,HEIGHT_CENTER);
         ctx.restore();
